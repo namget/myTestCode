@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.namget.testcode.ui.login.LoginViewModel" />
@@ -45,9 +45,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/login_input_pw"
-            android:onTextChanged="@{viewModel::loginPwTextChanged}"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
+            android:onTextChanged="@{viewModel::loginPwTextChanged}"
             android:selectAllOnFocus="true"
             android:text="body596!"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="64dp"
-            android:onClick="@{(v) -> viewModel.login( username, password)}"
+            android:onClick="@{viewModel::login}"
             android:text="@string/login_input_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -4,6 +4,7 @@ import com.namget.testcode.data.model.response.LoginResonse
 import com.namget.testcode.data.model.response.StorageResponse
 import io.reactivex.Single
 import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 
@@ -16,6 +17,7 @@ interface ApiService {
     /**
      * 로그인
      */
+    @FormUrlEncoded
     @POST("login/appLogin.json")
     fun getLogin(
         @Field("admin_id") id: String, @Field("admin_pwd") pw: String

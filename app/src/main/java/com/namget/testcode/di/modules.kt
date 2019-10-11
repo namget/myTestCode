@@ -81,13 +81,13 @@ val apiModule = module {
         retrofit
     }
 
-    single {
-        get<Retrofit>().create(ApiService::class.java)
+    single(named("ApiService")) {
+        get<Retrofit>(named("loginApi")).create(ApiService::class.java)
     }
 
 
     single {
-        ApiRemoteDatasource(get())
+        ApiRemoteDatasource(get<ApiService>(named("ApiService")))
     }
     single {
         ApiRepositoryImpI(get()) as ApiRepository
