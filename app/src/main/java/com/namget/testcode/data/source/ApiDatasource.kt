@@ -1,6 +1,7 @@
 package com.namget.testcode.data.source
 
 import com.namget.testcode.data.model.response.LoginResonse
+import com.namget.testcode.data.model.response.StorageResponse
 import io.reactivex.Single
 
 /**
@@ -8,5 +9,5 @@ import io.reactivex.Single
  */
 interface ApiDatasource {
     fun getLoginInfo(id : String , pwd : String) : Single<LoginResonse>
-    fun getStorageInfo()
+    fun getStorageInfo() : Single<StorageResponse>
 }

@@ -1,6 +1,7 @@
 package com.namget.testcode.data.source.remote
 
 import com.namget.testcode.data.model.response.LoginResonse
+import com.namget.testcode.data.model.response.StorageResponse
 import com.namget.testcode.data.source.ApiDatasource
 import io.reactivex.Single
 
@@ -12,7 +13,7 @@ class ApiRemoteDatasource(val apiService: ApiService) : ApiDatasource {
         return apiService.getLogin(id, pwd)
     }
 
-    override fun getStorageInfo() {
-
+    override fun getStorageInfo() : Single<StorageResponse>{
+        return apiService.getStorageInfo()
     }
 }

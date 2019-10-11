@@ -1,8 +1,10 @@
-package com.namget.testcode.data
+package com.namget.testcode.data.repository
 
 /**
- * Created by Namget on 2019.09.26.
+ * Created by Namget on 2019.10.10.
  */
+// coroutine을 이용시 callback을 통한 result 추출시 이용되는것 같음
+/*
 sealed class Result<out R>{
 
     data class Success<out T>(val data : T) : Result<T>()
@@ -16,5 +18,5 @@ sealed class Result<out R>{
             Loading -> "Loading"
         }
     }
-
 }
+*/

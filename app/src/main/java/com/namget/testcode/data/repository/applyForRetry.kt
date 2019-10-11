@@ -1,4 +1,4 @@
-package com.namget.testcode.data.source
+package com.namget.testcode.data.repository
 
 import io.reactivex.Flowable
 import io.reactivex.SingleSource
@@ -25,7 +25,10 @@ internal val SERVICE_UNAVAILABLE: RETRY_PREDICATE =
 
 //재시작을 위한 전략코드
 internal fun <T> applyRetryPolicy(
-    vararg predicates: RETRY_PREDICATE = arrayOf(TIMEOUT, NETWORK),
+    vararg predicates: RETRY_PREDICATE = arrayOf(
+        TIMEOUT,
+        NETWORK
+    ),
     maxRetries: Long = MAX_RETRIES,
     interval: Long = DEFAULT_INTERVAL,
     unit: TimeUnit = TimeUnit.SECONDS,

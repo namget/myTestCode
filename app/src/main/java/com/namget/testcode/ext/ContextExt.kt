@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.core.content.edit
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -67,12 +68,13 @@ fun Context.setLongPreference(key: String, value: Long) {
 }
 
 //Toast
-fun Context.toastMakeToast(text: String) {
-    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+fun Context.toastMakeToast(text: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, text, duration).show()
 }
+
 //Toast
-fun Context.toastMakeToast(res: Int) {
-    Toast.makeText(this, res, Toast.LENGTH_SHORT).show()
+fun Context.toastMakeToast(@StringRes res: Int, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, res, duration).show()
 }
 
 

@@ -1,6 +1,7 @@
 package com.namget.testcode.data.source.remote
 
 import com.namget.testcode.data.model.response.LoginResonse
+import com.namget.testcode.data.model.response.StorageResponse
 import io.reactivex.Single
 import retrofit2.http.Field
 import retrofit2.http.POST
@@ -23,5 +24,5 @@ interface ApiService {
 
 
     @POST("/mobile/api/wms/selectWarehouseList.json")
-    fun getStorageInfo()
+    fun getStorageInfo() : Single<StorageResponse>
 }

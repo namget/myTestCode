@@ -16,7 +16,7 @@ open class BaseViewModel : ViewModel() {
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    val compositeDisposable = CompositeDisposable()
+    protected val compositeDisposable = CompositeDisposable()
 
 
     fun addDisposable(disposable: Disposable) {

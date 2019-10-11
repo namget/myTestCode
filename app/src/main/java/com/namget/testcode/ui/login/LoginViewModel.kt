@@ -3,9 +3,7 @@ package com.namget.testcode.ui.login
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.namget.testcode.R
-import com.namget.testcode.data.model.Auth
-import com.namget.testcode.data.source.ApiRepository
+import com.namget.testcode.data.repository.ApiRepositoryImpI
 import com.namget.testcode.ext.plusAssign
 import com.namget.testcode.ui.base.BaseViewModel
 import com.namget.testcode.util.Event
@@ -13,7 +11,7 @@ import com.namget.testcode.util.Event
 /**
  * Created by Namget on 2019.09.30.
  */
-class LoginViewModel(private val apiRepository: ApiRepository) : BaseViewModel() {
+class LoginViewModel(private val apiRepositoryImpI: ApiRepositoryImpI) : BaseViewModel() {
 
     private val _IdText: MutableLiveData<String> = MutableLiveData()
     val loginText: LiveData<String> get() = _IdText
@@ -48,23 +46,50 @@ class LoginViewModel(private val apiRepository: ApiRepository) : BaseViewModel()
 
     fun requestLogin(id: String, pw: String) {
         isLoading(true)
-        compositeDisposable += apiRepository.getLoginInfo(id, pw)
-            .subscribe({ result ->
-                isLoading(false)
-                if (result.resultData != null) {
-                    if (_isAutoLogin.value == true) {
-                        Auth.login(result.resultData)
-                        Auth.saveIdPw(id, pw)
-                    }
-                } else {
-                    showSnackbarMessage(R.string.network_error)
-                    //error show
-                }
-            }, {
-                showSnackbarMessage(R.string.network_error)
-                isLoading(false)
-            })
+        compositeDisposable += apiRepositoryImpI.getLoginInfo(id, pw)
+            .subscribe { result ->
+                result.fold(
+                    onSuccess = {
+
+                    },
+                    onFailure = {}
+                )
+            }
     }
+
+    fun requestStorageStatus() {
+        compositeDisposable += apiRepositoryImpI.getStorageInfo()
+            .subscribe { result ->
+                result.fold(
+                    onSuccess = {
+
+                    },
+                    onFailure = {
+
+                    }
+                )
+            }
+    }
+
+
+    /*compositeDisposable += apiRepositoryImpI.getLoginInfo(id, pw)
+        .subscribe({ result ->
+            isLoading(false)
+            if (result.resultData != null) {
+                if (_isAutoLogin.value == true) {
+                    Auth.login(result.resultData)
+                    Auth.saveIdPw(id, pw)
+                }
+            } else {
+                showSnackbarMessage(R.string.network_error)
+                //error show
+            }
+        }, {
+            showSnackbarMessage(R.string.network_error)
+            isLoading(false)
+        })
+        }*/
+
 
     fun checkLoginText(id: String, password: String): Boolean {
         return (id.isEmpty() || password.isEmpty())
@@ -72,7 +97,7 @@ class LoginViewModel(private val apiRepository: ApiRepository) : BaseViewModel()
 
     fun onAutoLogin(view: View, isChecked: Boolean) {
         println("onAutoLogin : $isChecked")
-        PP.autoLogin.set(isChecked)
+//        PP.autoLogin.set(isChecked)
         _isAutoLogin.value = (isChecked)
     }
 
