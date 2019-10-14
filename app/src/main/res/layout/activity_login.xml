@@ -29,10 +29,10 @@
             android:layout_marginTop="96dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/login_input_id"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:onTextChanged="@{viewModel::loginIdTextChanged}"
             android:selectAllOnFocus="true"
-            android:text="ycm83"
+            android:text="@{viewModel.idText}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
             android:inputType="textPassword"
             android:onTextChanged="@{viewModel::loginPwTextChanged}"
             android:selectAllOnFocus="true"
-            android:text="body596!"
+            android:text="@{viewModel.passwordText}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="@{viewModel.isAutoLogin}"
-            android:onCheckedChanged="@{(v, isChecked) -> viewModel.onAutoLogin(v, isChecked)}"
+            android:onCheckedChanged="@{(v, isChecked) -> viewModel.onAutoLoginCheckedChanged(v, isChecked)}"
             android:text="@string/login_auto_login_btn"
             app:layout_constraintEnd_toEndOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/password" />

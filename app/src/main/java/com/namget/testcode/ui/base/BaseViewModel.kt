@@ -33,7 +33,7 @@ open class BaseViewModel : ViewModel() {
         _isLoading.value = loading
     }
 
-    protected fun showSnackbarMessage(@StringRes message: Int) {
+    protected fun showToastMessage(@StringRes message: Int) {
         _toastMessage.value = Event(message)
     }
 }

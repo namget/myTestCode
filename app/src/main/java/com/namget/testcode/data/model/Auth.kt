@@ -14,8 +14,8 @@ class Auth private constructor() {
         private lateinit var preferences: SharedPreferences
         private var resultData: LoginResonse.ResultData? = null
 
-
         enum class LoginDataEnum(val key: String) {
+            IS_AUTO_LOGIN("IS_AUTO_LOGIN"),
             ID("ID"),
             PW("PW"),
             SID("SID"),
@@ -32,25 +32,26 @@ class Auth private constructor() {
             preferences = context.getSharedPreferences(authFileName, Context.MODE_PRIVATE)
         }
 
-        fun saveIdPw(id: String, pw: String) {
-            preferences.edit().apply() {
-                putString(LoginDataEnum.ID.key, id)
-                putString(LoginDataEnum.PW.key, pw)
-                apply()
-            }
-        }
-
-        fun logout() {
-            preferences.edit().clear().apply()
-        }
-
-        fun login(rd: LoginResonse.ResultData) {
-            saveLoginDataPref(rd)
+        fun loadIDInfo(): String = preferences.getString(LoginDataEnum.ID.key, "") ?: ""
+        fun loadPWInfo(): String = preferences.getString(LoginDataEnum.PW.key, "") ?: ""
+        fun saveIdPw(id: String, pw: String) = preferences.edit().apply {
+            putString(LoginDataEnum.ID.key, id)
+            putString(LoginDataEnum.PW.key, pw)
+            apply()
         }
 
 
-        fun saveLoginDataPref(rd: LoginResonse.ResultData) {
-            //        Auth.loginData = loginData;
+        fun saveAutoLogin(isLogin: Boolean) = preferences.edit().apply {
+            putBoolean(LoginDataEnum.IS_AUTO_LOGIN.key, isLogin)
+            apply()
+        }
+
+        fun loadIsAutoLogin(): Boolean = preferences.getBoolean(LoginDataEnum.IS_AUTO_LOGIN.key, false)
+
+        fun logout() = preferences.edit().clear().apply()
+
+
+        fun saveLoginDataPref(rd: LoginResonse.ResultData) =
             preferences.edit().apply {
                 putString(LoginDataEnum.SID.key, rd.sid)
                 putInt(LoginDataEnum.PER_CD.key, rd.perCd)
@@ -62,7 +63,7 @@ class Auth private constructor() {
                 putString(LoginDataEnum.CAR_NUMBER.key, rd.carNumber)
                 apply()
             }
-        }
+
 
         fun checkSession(resultCode: Int): Boolean {
             if (resultCode == 309) {
