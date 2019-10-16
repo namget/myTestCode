@@ -21,6 +21,8 @@ import io.reactivex.subjects.PublishSubject
     }
  */
 
+//해당 타입의 클래스만을 listen 하게 한다.
+
 object RxBus {
     private val publisher = PublishSubject.create<Any>()
 
