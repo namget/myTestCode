@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * Created by Namget on 2019.09.23.
  */
 
-private const val LOGIN_BASEURL = ""
+private const val LOGIN_BASEURL = "https://naver.com"
 private const val TIMEOUT: Long = 10L
 
 val apiModule = module {
@@ -45,7 +45,7 @@ val apiModule = module {
     single(named("httpLoggingInterceptor")) {
         val httpLoggingInterceptorterceptor = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
-                HttpLoggingInterceptor.Level.BASIC
+                HttpLoggingInterceptor.Level.BODY
             } else {
                 HttpLoggingInterceptor.Level.NONE
             }
@@ -87,7 +87,7 @@ val apiModule = module {
 
 
     single {
-        ApiRemoteDatasource(get<ApiService>(named("ApiService")))
+        ApiRemoteDatasource(get(named("ApiService")))
     }
     single {
         ApiRepositoryImpI(get()) as ApiRepository

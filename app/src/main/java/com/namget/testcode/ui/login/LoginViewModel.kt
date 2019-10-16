@@ -16,10 +16,9 @@ import com.namget.testcode.util.e
  */
 class LoginViewModel(private val apiRepository: ApiRepository) : BaseViewModel() {
 
-    private val idText: MutableLiveData<String> = MutableLiveData()
-    private val passwordText: MutableLiveData<String> = MutableLiveData()
-    private val isAutoLogin: MutableLiveData<Boolean> = MutableLiveData()
-
+    val idText: MutableLiveData<String> = MutableLiveData()
+    val passwordText: MutableLiveData<String> = MutableLiveData()
+    val isAutoLogin: MutableLiveData<Boolean> = MutableLiveData()
 
     private val _startMainActivityEvent: MutableLiveData<Event<String>> = MutableLiveData()
     val startMainActivityEvent: LiveData<Event<String>> get() = _startMainActivityEvent

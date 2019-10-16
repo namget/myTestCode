@@ -30,7 +30,6 @@
             android:layout_marginEnd="24dp"
             android:hint="@string/login_input_id"
             android:inputType="text"
-            android:onTextChanged="@{viewModel::loginIdTextChanged}"
             android:selectAllOnFocus="true"
             android:text="@={viewModel.idText}"
             app:layout_constraintEnd_toEndOf="parent"
