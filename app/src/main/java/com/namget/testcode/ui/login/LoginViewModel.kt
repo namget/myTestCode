@@ -16,36 +16,34 @@ import com.namget.testcode.util.e
  */
 class LoginViewModel(private val apiRepository: ApiRepository) : BaseViewModel() {
 
-    private val _idText: MutableLiveData<String> = MutableLiveData()
-    val idText: LiveData<String> get() = _idText
+    private val idText: MutableLiveData<String> = MutableLiveData()
+    private val passwordText: MutableLiveData<String> = MutableLiveData()
+    private val isAutoLogin: MutableLiveData<Boolean> = MutableLiveData()
 
-    private val _passwordText: MutableLiveData<String> = MutableLiveData()
-    val passwordText: LiveData<String> get() = _passwordText
 
     private val _startMainActivityEvent: MutableLiveData<Event<String>> = MutableLiveData()
     val startMainActivityEvent: LiveData<Event<String>> get() = _startMainActivityEvent
 
-    private val _isAutoLogin: MutableLiveData<Boolean> = MutableLiveData()
-    val isAutoLogin: LiveData<Boolean> get() = _isAutoLogin
+
 
 
     init {
-        /*_idText.value ="ycm83"
-        _passwordText.value ="body596!"*/
+        /*idText.value ="ycm83"
+        passwordText.value ="body596!"*/
 
         if (Auth.loadIsAutoLogin()) {
             val id = Auth.loadIDInfo()
             val password = Auth.loadPWInfo()
-            _idText.value = id
-            _passwordText.value = password
-            _isAutoLogin.value = Auth.loadIsAutoLogin()
+            idText.value = id
+            passwordText.value = password
+            isAutoLogin.value = Auth.loadIsAutoLogin()
             requestLogin(id, password)
         }
     }
 
     fun login(view: View) {
-        val id = _idText.value ?: ""
-        val pw = _passwordText.value ?: ""
+        val id = idText.value ?: ""
+        val pw = passwordText.value ?: ""
 
         if (!checkLoginText(id, pw)) {
             requestLogin(id, pw)
@@ -77,28 +75,12 @@ class LoginViewModel(private val apiRepository: ApiRepository) : BaseViewModel()
     }
 
     private fun saveAuthInfo(id: String, pw: String) {
-        Auth.saveAutoLogin(_isAutoLogin.value ?: false)
+        Auth.saveAutoLogin(isAutoLogin.value ?: false)
         Auth.saveIdPw(id, pw)
     }
 
     private fun checkLoginText(id: String, password: String): Boolean {
         return (id.isEmpty() || password.isEmpty())
     }
-
-    fun onAutoLoginCheckedChanged(view: View, isChecked: Boolean) {
-        e("onAutoLoginCheckedChanged", "onAutoLoginCheckedChanged : $isChecked")
-        _isAutoLogin.value = (isChecked)
-    }
-
-    fun loginIdTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        e("loginIdTextChanged", "loginIdTextChanged : $s")
-        _idText.value = s.toString()
-    }
-
-    fun loginPwTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        e("loginPwTextChanged", "loginPwTextChanged : $s")
-        _passwordText.value = s.toString()
-    }
-
 
 }
