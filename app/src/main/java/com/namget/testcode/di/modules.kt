@@ -1,6 +1,6 @@
 package com.namget.testcode.di
 
-import com.bodyfriend.waterpurifier.data.model.dto.response.ApiRepositoryImpI
+import com.namget.testcode.data.repository.ApiRepositoryImpI
 import com.google.gson.GsonBuilder
 import com.namget.testcode.BuildConfig
 import com.namget.testcode.data.repository.ApiRepository

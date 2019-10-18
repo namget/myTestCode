@@ -1,10 +1,9 @@
-package com.bodyfriend.waterpurifier.data.model.dto.response
+package com.namget.testcode.data.repository
 
 
 import com.namget.testcode.data.model.Auth
 import com.namget.testcode.data.model.dto.response.LoginResonse
 import com.namget.testcode.data.model.dto.response.StorageResponse
-import com.namget.testcode.data.repository.ApiRepository
 import com.namget.testcode.data.source.local.ApiLocalLocalDataSourceImpl
 import com.namget.testcode.data.source.remote.ApiRemoteDataSourceImpl
 import com.namget.testcode.ext.withScheduler
