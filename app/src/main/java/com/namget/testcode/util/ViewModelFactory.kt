@@ -2,7 +2,6 @@ package com.namget.testcode.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.namget.testcode.data.repository.ApiRepositoryImpI
 import com.namget.testcode.ui.main.MainViewModel
 
 /**

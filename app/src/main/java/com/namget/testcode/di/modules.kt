@@ -1,10 +1,12 @@
 package com.namget.testcode.di
 
+import com.bodyfriend.waterpurifier.data.model.dto.response.ApiRepositoryImpI
 import com.google.gson.GsonBuilder
 import com.namget.testcode.BuildConfig
 import com.namget.testcode.data.repository.ApiRepository
-import com.namget.testcode.data.repository.ApiRepositoryImpI
-import com.namget.testcode.data.source.remote.ApiRemoteDatasource
+import com.namget.testcode.data.source.local.ApiLocalLocalDataSourceImpl
+import com.namget.testcode.data.source.local.AppDatabase
+import com.namget.testcode.data.source.remote.ApiRemoteDataSourceImpl
 import com.namget.testcode.data.source.remote.ApiService
 import com.namget.testcode.ui.login.LoginViewModel
 import com.namget.testcode.ui.main.MainViewModel
@@ -12,6 +14,7 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -27,7 +30,7 @@ import java.util.concurrent.TimeUnit
 private const val LOGIN_BASEURL = "https://naver.com"
 private const val TIMEOUT: Long = 10L
 
-val apiModule = module {
+val remoteModule = module {
 
     single(named("headerInterceptor")) {
         val headerInterceptor = Interceptor {
@@ -84,13 +87,26 @@ val apiModule = module {
     single(named("ApiService")) {
         get<Retrofit>(named("loginApi")).create(ApiService::class.java)
     }
-
-
     single {
-        ApiRemoteDatasource(get(named("ApiService")))
+        ApiRemoteDataSourceImpl(get(named("ApiService")))
     }
+}
+
+val repositoryModule = module {
     single {
-        ApiRepositoryImpI(get()) as ApiRepository
+        ApiRepositoryImpI(get(), get()) as ApiRepository
+    }
+}
+
+
+val localModule = module {
+    //DB
+    single {
+        AppDatabase.buildDataBase(androidContext())
+    }
+
+    single {
+        ApiLocalLocalDataSourceImpl(get())
     }
 }
 

@@ -1,4 +1,4 @@
-package com.namget.testcode.data.model.request
+package com.namget.testcode.data.model.dto.request
 
 import com.google.gson.annotations.SerializedName
 

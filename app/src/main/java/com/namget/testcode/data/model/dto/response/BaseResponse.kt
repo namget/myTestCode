@@ -1,4 +1,4 @@
-package com.namget.testcode.data.model.response
+package com.namget.testcode.data.model.dto.response
 
 /**
  * Created by Namget on 2019.09.30.

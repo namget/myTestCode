@@ -2,7 +2,7 @@ package com.namget.testcode.data.model
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.namget.testcode.data.model.response.LoginResonse
+import com.namget.testcode.data.model.dto.response.LoginResonse
 
 /**
  * Created by Namget on 2019.09.30.

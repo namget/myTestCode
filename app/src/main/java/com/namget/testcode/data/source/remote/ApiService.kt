@@ -1,7 +1,7 @@
 package com.namget.testcode.data.source.remote
 
-import com.namget.testcode.data.model.response.LoginResonse
-import com.namget.testcode.data.model.response.StorageResponse
+import com.namget.testcode.data.model.dto.response.LoginResonse
+import com.namget.testcode.data.model.dto.response.StorageResponse
 import io.reactivex.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
