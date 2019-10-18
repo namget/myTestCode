@@ -1,9 +1,9 @@
 package com.namget.testcode.di
 
-import com.namget.testcode.data.repository.ApiRepositoryImpI
 import com.google.gson.GsonBuilder
 import com.namget.testcode.BuildConfig
 import com.namget.testcode.data.repository.ApiRepository
+import com.namget.testcode.data.repository.ApiRepositoryImpI
 import com.namget.testcode.data.source.local.ApiLocalLocalDataSourceImpl
 import com.namget.testcode.data.source.local.AppDatabase
 import com.namget.testcode.data.source.remote.ApiRemoteDataSourceImpl
@@ -33,7 +33,7 @@ private const val TIMEOUT: Long = 10L
 val remoteModule = module {
 
     single(named("headerInterceptor")) {
-        val headerInterceptor = Interceptor {
+        Interceptor {
             val original = it.request()
             val request = original.newBuilder()
 //                .header("X-Naver-Client-Id", "lih3bjz8wm5kjJhL8Grx")
@@ -42,46 +42,40 @@ val remoteModule = module {
                 .build()
             it.proceed(request)
         }
-        headerInterceptor
     }
 
     single(named("httpLoggingInterceptor")) {
-        val httpLoggingInterceptorterceptor = HttpLoggingInterceptor().apply {
+        HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
             } else {
                 HttpLoggingInterceptor.Level.NONE
             }
         }
-        httpLoggingInterceptorterceptor
     }
 
     single {
-        val gson = GsonBuilder().setLenient().create()
-        gson
+        GsonBuilder().setLenient().create()
     }
 
     single {
-        val client =
-            OkHttpClient.Builder().addInterceptor(get(named("headerInterceptor")))
-                .addInterceptor(get(named("httpLoggingInterceptor")))
-                .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(TIMEOUT, TimeUnit.SECONDS)
-                .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-                .build()
-        client
+        OkHttpClient.Builder().addInterceptor(get(named("headerInterceptor")))
+            .addInterceptor(get(named("httpLoggingInterceptor")))
+            .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+            .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+            .build()
     }
 
     //apiService naming을 통해 여러 BaseUrl을 가진 apiService 생성
     //동작의 경우
     single(named("loginApi")) {
-        val retrofit = Retrofit.Builder().apply {
+        Retrofit.Builder().apply {
             addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             addConverterFactory(GsonConverterFactory.create(get()))
             client(get())
             baseUrl(LOGIN_BASEURL)
         }.build()
-        retrofit
     }
 
     single(named("ApiService")) {
