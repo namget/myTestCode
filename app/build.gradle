@@ -105,6 +105,7 @@ dependencies {
     def roomVersion = "2.2.0"
 
     implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion" // use kapt for Kotlin
     // optional - RxJava support for Room
     implementation "androidx.room:room-rxjava2:$roomVersion"

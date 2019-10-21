@@ -1,5 +1,6 @@
 package com.namget.testcode.di
 
+import androidx.room.Room
 import com.google.gson.GsonBuilder
 import com.namget.testcode.BuildConfig
 import com.namget.testcode.data.repository.ApiRepository
@@ -14,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -96,7 +97,7 @@ val repositoryModule = module {
 val localModule = module {
     //DB
     single {
-        AppDatabase.buildDataBase(androidContext())
+        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "myDbFile.db").build()
     }
 
     single {
