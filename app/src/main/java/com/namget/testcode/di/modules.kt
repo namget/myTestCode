@@ -71,12 +71,12 @@ val remoteModule = module {
     //apiService naming을 통해 여러 BaseUrl을 가진 apiService 생성
     //동작의 경우
     single(named("loginApi")) {
-        Retrofit.Builder().apply {
-            addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-            addConverterFactory(GsonConverterFactory.create(get()))
-            client(get())
-            baseUrl(LOGIN_BASEURL)
-        }.build()
+        Retrofit.Builder()
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .addConverterFactory(GsonConverterFactory.create(get()))
+            .client(get())
+            .baseUrl(LOGIN_BASEURL)
+            .build()
     }
 
     single(named("ApiService")) {
