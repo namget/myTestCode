@@ -42,6 +42,11 @@ android {
         }
     }
 
+    //coil jvm target option
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
 dependencies {
@@ -100,6 +105,10 @@ dependencies {
     def glideVersion = "4.10.0"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //coil
+    def coilVersion = "0.8.0"
+    implementation"io.coil-kt:coil:$coilVersion
 
 
     def roomVersion = "2.2.0"
