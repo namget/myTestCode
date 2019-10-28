@@ -108,7 +108,7 @@ dependencies {
 
     //coil
     def coilVersion = "0.8.0"
-    implementation"io.coil-kt:coil:$coilVersion
+    implementation"io.coil-kt:coil:$coilVersion"
 
 
     def roomVersion = "2.2.0"
