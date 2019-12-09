@@ -90,6 +90,8 @@ dependencies {
     implementation "org.koin:koin-android:$koinVersion"
     // or ViewModel for AndroidX
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+    // Testing with Koin
+    testImplementation "org.koin:koin-test:$koinVersion"
 
     //coroutine
     def coroutineVersion = "1.3.0"
@@ -112,7 +114,6 @@ dependencies {
 
 
     def roomVersion = "2.2.0"
-
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion" // use kapt for Kotlin
@@ -127,8 +128,16 @@ dependencies {
     /*def leakcanaryVersion = "2.0-beta-3"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanaryVersion"*/
 
+    // Kotlin
+    def nav_version = "2.1.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 }

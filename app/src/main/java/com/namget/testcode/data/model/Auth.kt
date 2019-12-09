@@ -27,7 +27,6 @@ class Auth private constructor() {
             ADMIN_ID("ADMIN_ID"),
             CAR_NUMBER("CAR_NUMBER")
         }
-
         fun CREATE(context: Context) {
             preferences = context.getSharedPreferences(authFileName, Context.MODE_PRIVATE)
         }
@@ -39,18 +38,13 @@ class Auth private constructor() {
             putString(LoginDataEnum.PW.key, pw)
             apply()
         }
-
-
         fun saveAutoLogin(isLogin: Boolean) = preferences.edit().apply {
             putBoolean(LoginDataEnum.IS_AUTO_LOGIN.key, isLogin)
             apply()
         }
-
+        fun loadSid() : String = preferences.getString(LoginDataEnum.SID.key,"")!!
         fun loadIsAutoLogin(): Boolean = preferences.getBoolean(LoginDataEnum.IS_AUTO_LOGIN.key, false)
-
         fun logout() = preferences.edit().clear().apply()
-
-
         fun saveLoginDataPref(rd: LoginResonse.ResultData) =
             preferences.edit().apply {
                 putString(LoginDataEnum.SID.key, rd.sid)
@@ -63,7 +57,6 @@ class Auth private constructor() {
                 putString(LoginDataEnum.CAR_NUMBER.key, rd.carNumber)
                 apply()
             }
-
 
         fun checkSession(resultCode: Int): Boolean {
             if (resultCode == 309) {

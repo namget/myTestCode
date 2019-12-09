@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">WaterPurifier</string>
 
+
+    <string name="title_notice">aa</string>
+    <string name="title_shipping_list">bb</string>
+    <string name="title_home">cc</string>
+    <string name="title_success_order">dd</string>
+    <string name="title_delivery_order">ee</string>
+
+    <!--navi menu-->
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+
     <string name="login_input_id">ID를 입력하세요</string>
     <string name="login_input_pw">PW를 입력하세요.</string>
     <string name="login_auto_login_btn">자동 로그인</string>

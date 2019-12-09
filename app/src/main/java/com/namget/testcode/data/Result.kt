@@ -1,4 +1,4 @@
-package com.namget.testcode.data.repository
+package com.namget.testcode.data
 
 /**
  * Created by Namget on 2019.10.10.
