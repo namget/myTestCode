@@ -1,2 +1,28 @@
-# 내코드
-편하게 개발을 하기위한 rx 및 베이스 코드들 그냥 등록
+# 베이스코드
+
+쉽게 사용하기 위한 베이스코드 등
+
+## libraries
+
+-   ViewModel
+    
+-   DataBinding
+    
+-   Koin
+    
+-   Rxjava
+    
+-   Constraint Layout
+    
+-   retrofit
+    
+-   coil
+    
+-   room
+    
+-   navigation
+    
+
+## Contributors
+
+-   이재우
